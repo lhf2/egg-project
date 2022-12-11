@@ -10,4 +10,5 @@ module.exports = app => {
 
   // 用户相关
   router.post('/user/register', controller.user.register)
+  router.post('/user/login', controller.user.login)
 };

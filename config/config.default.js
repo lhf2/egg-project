@@ -34,6 +34,14 @@ module.exports = appInfo => {
       enable:false
     }
   }
+  
+  // jwt
+  config.jwt = {
+    // 生成 token 唯一的 key
+    secret:'f2d1c153-39ec-4327-8c86-0d7308ad84f0',
+    // token 的过期时间
+    expiresIn:'1d'
+  }
 
   // add your user config here
   const userConfig = {
