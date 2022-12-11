@@ -56,6 +56,14 @@ class UserController extends Controller {
       token
     }
   }
+
+  // 用户信息
+  async info() {
+    const { ctx } = this
+    const userId = ctx.params.userId
+    const userInfo = await ctx.model.User.findById(userId)
+    ctx.body = userInfo
+  }
 }
 
 module.exports = UserController;

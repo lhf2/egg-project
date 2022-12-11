@@ -4,11 +4,12 @@
  * @param {Egg.Application} app - egg application
  */
 module.exports = app => {
-  const { router, controller } = app;
+  const { router, controller } = app
   // 设置请求前缀
   router.prefix('/api/v1')
 
   // 用户相关
   router.post('/user/register', controller.user.register)
   router.post('/user/login', controller.user.login)
+  router.get('/user/info/:userId', app.middleware.auth({ required: false }), controller.user.info)
 };

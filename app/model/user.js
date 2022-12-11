@@ -17,7 +17,9 @@ module.exports = app => {
         },
         password: {
             type: String,
-            required: true
+            required: true,
+            // 不返回密码字段
+            select: false
         }
     });
 
