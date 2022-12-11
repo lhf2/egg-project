@@ -5,5 +5,9 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  router.get('/', controller.home.index);
+  // 设置请求前缀
+  router.prefix('/api/v1')
+
+  // 用户相关
+  router.post('/user/register', controller.user.register)
 };

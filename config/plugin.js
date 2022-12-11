@@ -2,8 +2,14 @@
 
 /** @type Egg.EggPlugin */
 module.exports = {
-  // had enabled by egg
-  // static: {
-  //   enable: true,
-  // }
-};
+  // 连接 mongodb
+  mongoose: {
+    enable: true,
+    package: 'egg-mongoose'
+  },
+  // 验证
+  validate: {
+    enable: true,
+    package: 'egg-validate',
+  }
+}
