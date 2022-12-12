@@ -20,4 +20,5 @@ module.exports = app => {
   router.post('/article/like', auth, controller.article.like)
   router.post('/article/comment', auth, controller.article.comment)
   router.get('/article/comment/list/:articleId', controller.article.commentList)
+  router.get('/article/rank/hot/get', controller.article.getHotRank)
 };

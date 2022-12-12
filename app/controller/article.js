@@ -70,6 +70,8 @@ class ArticleController extends Controller {
                 articleId: articleId
             })
             await article.save()
+            // 增加热度 点赞+2
+            this.service.rank.hotInc(articleId, 2)
             ctx.body = {
                 msg: '点赞成功'
             }
@@ -91,17 +93,20 @@ class ArticleController extends Controller {
         }
 
         const { Comment } = this.app.model
-        const comment = new Comment({
+        const comment = await new Comment({
             articleId,
             userId: ctx.user._id,
             content
         }).save()
+
         if (comment) {
             // 增加文章的评论数
             article.commentCount = await Comment.countDocuments({
                 articleId: articleId
             })
             await article.save()
+            // 增加热度 评论+1
+            this.service.rank.hotInc(articleId, 1)
             ctx.body = {
                 msg: '评论成功'
             }
@@ -128,13 +133,22 @@ class ArticleController extends Controller {
         })
         if (list && list.length) {
             ctx.body = {
-                list
+                list,
+                total: list.length
             }
         } else {
             ctx.body = {
                 msg: '暂无数据'
             }
         }
+    }
+    /**
+     * 热度排行榜
+     */
+    async getHotRank() {
+        const { ctx } = this
+        const tops = await this.service.rank.topHot(10)
+        ctx.body = tops
     }
 }
 
