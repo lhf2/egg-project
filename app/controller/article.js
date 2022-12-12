@@ -109,6 +109,33 @@ class ArticleController extends Controller {
             this.ctx.throw(501, '评论失败')
         }
     }
+    /**
+     * 文章评论列表
+     */
+    async commentList() {
+        const { ctx } = this
+        const articleId = ctx.params.articleId
+
+        // 文章是否存在
+        const article = await ctx.model.Article.findById(articleId)
+        if (!article) {
+            ctx.throw(404, '文章不存在')
+        }
+
+        const { Comment } = this.app.model
+        const list = await Comment.find({
+            articleId
+        })
+        if (list && list.length) {
+            ctx.body = {
+                list
+            }
+        } else {
+            ctx.body = {
+                msg: '暂无数据'
+            }
+        }
+    }
 }
 
 module.exports = ArticleController;
