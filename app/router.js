@@ -18,4 +18,5 @@ module.exports = app => {
   router.post('/article/create', auth, controller.article.create)
   router.get('/article/info/:articleId', controller.article.info)
   router.post('/article/like', auth, controller.article.like)
+  router.post('/article/comment', auth, controller.article.comment)
 };
