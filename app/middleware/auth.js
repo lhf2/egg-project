@@ -12,7 +12,8 @@ module.exports = (options = { requried: true }) => {
         if (token) {
             // 验证 token 是否正确
             try {
-                const data = ctx.service.user.verifyToken(token)
+                const data = await ctx.service.user.verifyToken(token)
+                // 存储登录用户的信息 方便直接从 ctx 中获取出来
                 ctx.user = data.user
             } catch (error) {
                 ctx.throw(401, 'token验证失败')

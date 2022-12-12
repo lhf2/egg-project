@@ -13,9 +13,10 @@ class UserService extends Service {
     }
     // 查找邮箱是否存在
     async findEmail(email) {
+        // 这里需要返回 password，在登录对比密码是否正确时会用到
         return this.User.findOne({
             email
-        })
+        }).select('+password')
     }
     // 创建 token
     async createToken(data) {

@@ -20,7 +20,15 @@ module.exports = app => {
             required: true,
             // 不返回密码字段
             select: false
-        }
+        },
+        createAt: {
+            type: Date,
+            default: Date.now
+        },
+         updateAt: {
+            type: Date,
+            default: Date.now
+         }
     });
 
     return mongoose.model('User', UserSchema);
