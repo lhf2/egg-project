@@ -16,4 +16,5 @@ module.exports = app => {
 
   // 文章相关
   router.post('/article/create', auth, controller.article.create)
+  router.get('/article/info/:articleId', controller.article.info)
 };
